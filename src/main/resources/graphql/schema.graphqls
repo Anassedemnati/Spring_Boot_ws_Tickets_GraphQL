@@ -1,0 +1,47 @@
+type Query {
+    ticketList : [Ticket]
+    ticketById(id : Float) : Ticket
+    matchs:[Match]
+    matchById(id : Float): Match
+
+}
+
+type Mutation {
+    saveMatch(matchRequest:MatchRequest):Match
+    saveTicket(ticketRequest:TicketRequest):Ticket
+    updateTicket(id:Float,ticketRequest:TicketRequest):Ticket
+    deleteTicket(id:Float):String
+}
+
+type Ticket{
+    id: Float,
+    reference:String,
+    prix:Float,
+    statut:Boolean,
+    achete:Boolean,
+    match:Match
+
+}
+type Match{
+    id: Float,
+    reference:String,
+    matchDate:String,
+    lieu:String,
+    equipe1:String,
+    equipe2:String,
+    tickets:[Ticket]
+
+}
+input MatchRequest{
+    reference:String,
+    matchDate:String,
+    lieu:String,
+    equipe1:String,
+    equipe2:String,
+}
+input TicketRequest{
+    prix:Float,
+    matchId:Float,
+    achete:Boolean,
+    statut:Boolean
+}
